@@ -1,0 +1,39 @@
+from mcp.server.fastmcp import FastMCP
+
+# Initialize the MCP server
+mcp = FastMCP("Math Server")
+
+@mcp.tool()
+def add(a: float, b: float) -> float:
+    """
+    Add two numbers.
+    """
+    return a + b
+
+@mcp.tool()
+def subtract(a: float, b: float) -> float:
+    """
+    Subtract b from a.
+    """
+    return a - b
+
+@mcp.tool()
+def multiply(a: float, b: float) -> float:
+    """
+    Multiply two numbers.
+    """
+    return a * b
+
+@mcp.tool()
+def divide(a: float, b: float) -> float:
+    """
+    Divide a by b. Raises ValueError if b is zero.
+    """
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
+
+if __name__ == "__main__":
+    # This allows running the server directly for testing or inspection
+    mcp.run(transport="stdio")
+
